@@ -1,0 +1,33 @@
+// 4 Написать функцию сортировки массива, использующую указательную арифметику вместо обращения по индексам.
+
+#include <iostream>
+using namespace std;
+void sorts(int* p, int n)
+{
+    int minn, temp;
+    for(int i = 0; i < n; i++){
+           minn = *(p + i);
+           for(int j = i+1; j < n; j++){
+            if(*(p + i) > *(p + j)){
+                temp = *(p + i);
+                *(p + i) = *(p + j);
+                *(p + j) = temp;
+            }
+       }
+    }
+}
+int main() {
+    int number;    // количество элементов в массиве
+    cin >> number;
+    int *point = new int;
+    for(int i = 0; i < number; i++){
+        cin >> *(point + i);
+    }
+    sorts(point,number);
+    for(int i = 0; i < number; i++){
+       cout << *(point + i) << ' ';
+    }
+  return 0;
+}
+
+
