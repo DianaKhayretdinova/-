@@ -1,0 +1,19 @@
+// 3.Написать программу ,проверяющую число на простоту и находящую количество делителей
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  setlocale(LC_ALL, "Russian");
+  int a,divider = 0;
+  cin >> a;
+  for(int i = 2; i <= a/2; i++){
+    if(a % i == 0){
+      divider++;
+    }
+  }
+  if(divider == 0){
+    cout << "Ввведеное число является простым";
+  } else cout << "Введеное число является составным. Количество всех делителей, кроме единицы и самого числа: " << divider;
+  return 0;
+}
