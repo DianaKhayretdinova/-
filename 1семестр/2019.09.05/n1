@@ -1,0 +1,22 @@
+
+//Написать программу находящую среднее арифметическое факториалов последовательности чисел
+
+#include <iostream>
+using namespace std;
+
+int factorial(int k){
+  if(k == 1 || k == 0) return 1;
+  return k*factorial(k - 1);
+}
+
+int main() {
+  int n;
+  cin >> n;
+  int a,sum = 0;
+  for(int i = 0; i < n; i++){
+    cin >> a;
+    sum += factorial(a);
+  }
+  cout << double(sum)/double(n);
+  return 0;
+}
