@@ -1,0 +1,36 @@
+// 5 Написать функцию сортировки массива, использующую указательную арифметику вместо обращения по индексам.
+
+#include <iostream>
+using namespace std;
+ void DEL_ODD(int & *point, int &num){
+
+}
+int main() {
+    int n;
+    cin >> n;
+    int* p = new int[n];
+    int odd = 0;
+    for(int i = 0; i < n; i++){
+        cin >> *(p + i);
+        if(*(p + i)% 2 == 1)
+        {
+            odd++;
+        }
+    }
+    int* DEL_ODD = new int[odd];
+    int j = 0, k = 0;
+    while(j != n){
+        if(*(p + j)% 2 ==  1){
+            *(DEL_ODD + k) = *(p + j);
+            k++;
+        }
+        j++;
+    }
+    for(int i = 0; i < odd; i++){
+        cout << *(DEL_ODD + i) << ' ';
+    }
+    delete []p;
+  return 0;
+}
+
+
