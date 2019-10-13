@@ -1,0 +1,25 @@
+//число Ферма
+#include <iostream>
+#include <cmath>
+using namespace std;
+bool ferma(int n){
+    bool lr[n + 1];
+    for(int i = 2; i < n + 1; i ++) lr[i] = true;
+    for(int i = 2; i < n + 1; i++){
+        if(lr[i]) for(int j = i*2; j < n +1; j+=i) lr[j] = 0;
+    }
+    double k = log(log((double(n - 1)))/log(2))/log(2);
+    int r = int(k);
+    if (k == r) return true;
+    return false;
+}
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int a;
+    cin >> a;
+    if (ferma(a)) cout << "Число является числом Ферма";
+    else cout << "Число не является числом Ферма";
+    return 0;
+}
+
+
