@@ -1,0 +1,25 @@
+//число Мерсенна
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+bool Mersenn(int n){
+    bool lr[n + 1];
+    for(int i = 2; i < n + 1; i ++) lr[i] = true;
+    for(int i = 2; i < n + 1; i++){
+        if(lr[i]) for(int j = i*2; j < n +1; j+=i) lr[j] = 0;
+    }
+    if (lr[n] == 0) return false;
+    double k = log((double(n + 1)))/log(2);
+    int r = int(k);
+    if (k == r && lr[r] == true) return true;
+    return false;
+}
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int a;
+    cin >> a;
+    if (Mersenn(a)) cout << "Число является простым числом Мерсенна";
+    else cout << "Число не является простым числом Мерсенна";
+    return 0;
+}
