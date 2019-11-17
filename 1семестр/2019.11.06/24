@@ -13,6 +13,7 @@ int greedy(int *r, int s,int a, int maxx){       // если число шаго
                 break;
             }
         }
+        if (k > maxx) break;
     }
     return k;
 }
