@@ -3,13 +3,13 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-int greedy(int *r, int s,int a){
+int greedy(int *r, int s,int a, int maxx){       // если число шагов становится больше, чем в текущем алгоритме в мин.числом шагов, выходим
     int k = 0;
     for(int i = s-1; i > 0; i--){
         while(a >= r[i]){
             k++;
             a = a - r[i];
-            if (a == 0){
+            if (a == 0 || k > maxx){      
                 break;
             }
         }
@@ -40,18 +40,18 @@ int main() {
         num ++;
         ar[num] = num*num;
     }
-    int g = greedy(ar, num, n);
+    int g = greedy(ar, num, n,n);
     int num1 = num;
     num--;
     while(num > 2){
-        temp = greedy(ar, num, n);
+        temp = greedy(ar, num, n, g);
         if(temp < g){
             num1 = num;
             g = temp;
         }
         num --;
     }
-    greedycout(ar, num1, n); // выводим число в виде суммы нужных квадратов
+    greedycout(ar, num1, n); // выводим число в виде нужной суммы квадратов
     delete []ar;
     return 0;
 }
