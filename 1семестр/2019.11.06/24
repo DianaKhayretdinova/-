@@ -50,7 +50,7 @@ int main() {
         }
         num --;
     }
-    greedycout(ar, num1, n);
+    greedycout(ar, num1, n); // выводим число в виде суммы нужных квадратов
     delete []ar;
     return 0;
 }
