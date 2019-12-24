@@ -19,7 +19,14 @@ int NeedlWunsch(string s1, string s2, int r, int d, int p){
       } else{ 
         f = 1; 
       } 
-      a[i][j] = min(a[i][j-1]+p, a[i-1][j]+d, a[i-1][j-1]+r*f); 
+      if(a[i][j-1]+p <= a[i-1][j]+d && a[i][j-1]+p <= a[i-1][j-1]+r*f){ 
+        a[i][j] = a[i][j-1]+p;
+      }
+      else if(a[i-1][j]+d <= a[i][j-1]+p && a[i-1][j]+d <= a[i-1][j-1]+r*f){
+        a[i][j] = a[i-1][j]+d;
+      } else {
+        a[i][j] = a[i-1][j-1]+r*f;
+      }
     } 
   } 
   return a[s1.size()][s2.size()]; 
