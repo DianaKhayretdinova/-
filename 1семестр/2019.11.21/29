@@ -1,0 +1,96 @@
+// кодер кода хэмминга и нахождение одной ошибки
+// входные данные количество байт и сообщение с пробелами
+#include <iostream>
+#include <cstring> 
+using namespace std;
+int find_mistake(string s, int len)
+  {    
+    int i, mistake = 0;
+        for (i = 0; i < len; i ++)
+                if (s[i] == '1')
+                    mistake ^= i + 1;
+                return mistake;
+  }
+
+void decoder(string s, int len){
+    int mistake = find_mistake(s, len);
+    char info[1024];    
+    int info_pos = 0; 
+    int b = 1; 
+          if (mistake)
+              {        
+              s[mistake - 1] ^= '0' ^ '1';
+              mistake = find_mistake(s, len);   
+         
+              if (mistake)     
+                 {           
+                  cout << "Invalid code";       
+                 }   
+              }
+              
+       cout << "Fixed code:"<< s << endl;
+       for (int i = 0; i < len; i++)
+            if (i + 1 == b)
+                  b <<= 1;
+            else
+               info[info_pos++] = s[i];
+               info[info_pos] = '\0';
+               cout << "Informational/original string:" << info << endl;
+
+ }
+ void coder(int *a, int n) {
+   int j = 1, k = 0, i1 = 0;
+   while(j <= n){
+     k++;
+     j= j*2;
+   }
+   int table[k + 1][n + k];
+   j = 1;
+
+   for(int i = 0;i < n + k; i++){
+     if(i + 1 != j){
+       table[0][i] = a[i1];
+       i1++;
+       } else {
+       table[0][i] = 0;
+       j*= 2;
+      }
+     }
+     for(int i = 0; i < k + n; i++){
+       j = i + 1;
+       for(int l = 1; l < k + 1; l++){
+         table[l][i] = j%2;
+         j = j /2;
+       }
+     }
+     j = 1;
+    for(int l = 0;l < k; l++){
+      for(int i = 0;i < n + k; i ++){
+        table[0][j - 1] += table[0][i]*table[l + 1][i];
+      }
+      table[0][j - 1] = table[0][j - 1]%2;
+      j*=2;
+    }
+    cout << "the resulting Hamming code:  ";
+    for(int i = 0; i < k + n; i++){ 
+      cout << table[0][i]; 
+   } 
+   cout << endl;
+} 
+ int main()
+  {    
+    int n;
+    cin >> n; // количество байт сообщения 1	0	0	1	0	0	1	0	1	1	1	0	0	0	1
+    n = n * 8;
+    int a[n];
+    for(int i = 0; i < n; i++) {
+      cin >> a[i];
+    }   
+    coder(a, n);
+    cout << "Enter the error code without spaces: ";
+    string s;
+    cin >> s;
+    int len = s.size();                
+    decoder(s, len);
+    return 0;
+  }
